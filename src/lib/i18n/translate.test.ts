@@ -64,4 +64,8 @@ describe('translate', () => {
   test('returns the original key when no namespace/key pair exists', () => {
     expect(translate('common' as never)).toBe('common');
   });
+
+  test('returns the original key when the namespace has no key', () => {
+    expect(translate('common.' as never)).toBe('common.');
+  });
 });

@@ -17,6 +17,11 @@ const translateGeneric = <R>(
   }
 
   const k = keys.join('.');
+
+  if (!k) {
+    return key;
+  }
+
   return t(`${namespace}:${k}`, replace);
 };
 
