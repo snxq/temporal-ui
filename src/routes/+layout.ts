@@ -4,12 +4,13 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import type { LayoutData, LayoutLoad } from './$types';
 
 import { i18nNamespaces } from '$lib/i18n';
+import { syncLocaleWithI18next } from '$lib/i18n/locale.svelte';
 import resources from '$lib/i18n/locales';
 
 export const ssr = false;
 
 export const load: LayoutLoad = async function (): LayoutData {
-  i18next.use(LanguageDetector).init({
+  await i18next.use(LanguageDetector).init({
     fallbackLng: 'en',
     load: 'languageOnly',
     ns: i18nNamespaces,
@@ -22,4 +23,6 @@ export const load: LayoutLoad = async function (): LayoutData {
     },
     resources,
   });
+
+  syncLocaleWithI18next();
 };
