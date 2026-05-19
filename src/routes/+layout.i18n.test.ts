@@ -54,6 +54,7 @@ describe('+layout i18n init', () => {
         defaultNS: 'common',
         detection: expect.objectContaining({
           order: ['querystring', 'localStorage', 'navigator'],
+          caches: ['localStorage'],
           lookupQuerystring: 'lng',
           lookupLocalStorage: 'locale',
         }),
