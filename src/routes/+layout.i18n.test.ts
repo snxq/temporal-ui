@@ -37,7 +37,7 @@ describe('+layout i18n init', () => {
     initMock.mockReturnValueOnce(initPromise);
 
     let settled = false;
-    const loadPromise = load({} as never).then(() => {
+    const loadPromise = Promise.resolve(load({} as never)).then(() => {
       settled = true;
     });
 
