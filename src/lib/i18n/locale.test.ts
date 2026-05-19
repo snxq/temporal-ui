@@ -61,6 +61,23 @@ describe('locale state', () => {
     expect(document.documentElement.lang).toBe('zh');
   });
 
+  it('syncs locale state without a document', () => {
+    Object.defineProperty(i18next, 'resolvedLanguage', {
+      configurable: true,
+      value: 'zh-CN',
+    });
+    const originalDocument = globalThis.document;
+
+    vi.stubGlobal('document', undefined);
+
+    try {
+      expect(syncLocaleWithI18next()).toBe('zh');
+      expect(currentLocale.value).toBe('zh');
+    } finally {
+      vi.stubGlobal('document', originalDocument);
+    }
+  });
+
   it('changes language and persists the selected locale', async () => {
     const changeLanguage = vi
       .spyOn(i18next, 'changeLanguage')

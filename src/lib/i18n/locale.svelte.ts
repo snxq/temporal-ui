@@ -25,7 +25,8 @@ export const normalizeLocale = (value?: string): SupportedLocale => {
 };
 
 const setDocumentLanguage = (value: SupportedLocale) => {
-  if (BROWSER) document.documentElement.lang = value;
+  if (BROWSER && typeof document !== 'undefined')
+    document.documentElement.lang = value;
 };
 
 export const currentLocale = {
