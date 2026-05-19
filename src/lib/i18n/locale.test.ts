@@ -44,6 +44,23 @@ describe('locale state', () => {
     expect(document.documentElement.lang).toBe('zh');
   });
 
+  it('falls back to i18next language when resolved language is absent', () => {
+    Object.defineProperty(i18next, 'resolvedLanguage', {
+      configurable: true,
+      value: undefined,
+    });
+    Object.defineProperty(i18next, 'language', {
+      configurable: true,
+      value: 'zh-Hans',
+    });
+
+    const locale = syncLocaleWithI18next();
+
+    expect(locale).toBe('zh');
+    expect(currentLocale.value).toBe('zh');
+    expect(document.documentElement.lang).toBe('zh');
+  });
+
   it('changes language and persists the selected locale', async () => {
     const changeLanguage = vi
       .spyOn(i18next, 'changeLanguage')
