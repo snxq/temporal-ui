@@ -14,6 +14,7 @@ export default defineConfig({
       $app: path.resolve(__dirname, './src/lib/svelte-mocks/app/'),
       $fixtures: path.resolve(__dirname, './src/fixtures/'),
     },
+    conditions: process.env.VITEST ? ['browser'] : undefined,
   },
   test: {
     include: ['**/*.test.ts', '**/*.spec.ts'],

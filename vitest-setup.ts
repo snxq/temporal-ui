@@ -4,6 +4,8 @@ import { vi } from 'vitest';
 import { i18nNamespaces } from './src/lib/i18n';
 import resources from './src/lib/i18n/locales';
 
+import { syncLocaleWithI18next } from './src/lib/i18n/locale.svelte';
+
 i18next.init({
   fallbackLng: 'en',
   load: 'languageOnly',
@@ -17,6 +19,8 @@ i18next.init({
   },
   resources,
 });
+
+syncLocaleWithI18next();
 
 const BroadcastChannelMock = vi.fn(() => ({
   addEventListener: () => {},

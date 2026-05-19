@@ -5,6 +5,7 @@
   import { type ClassNameValue, twMerge as merge } from 'tailwind-merge';
 
   import DataEncoderStatus from '$lib/components/data-encoder-status.svelte';
+  import LanguageSwitcher from '$lib/components/language-switcher.svelte';
   import TimezoneSelect from '$lib/components/timezone-select.svelte';
   import { translate } from '$lib/i18n/translate';
 
@@ -39,6 +40,7 @@
       {@render left?.()}
     </div>
     <div class="flex items-center gap-2">
+      <LanguageSwitcher class="pl-0" />
       <TimezoneSelect />
       <DataEncoderStatus />
       {@render children?.()}
